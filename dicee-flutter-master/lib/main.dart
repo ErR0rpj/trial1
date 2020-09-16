@@ -7,6 +7,7 @@
 
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:shake/shake.dart';
 
 void main() {
   return runApp(
@@ -31,6 +32,18 @@ class DicePage extends StatefulWidget {
 class _DicePageState extends State<DicePage> {
   int diceNumber1 = 6;
   int diceNumber2 = 6;
+
+  @override
+  void initState() {
+    super.initState();
+    ShakeDetector detector = ShakeDetector.autoStart(onPhoneShake: () {
+      setState(() {
+        print('Ghusa\n');
+        diceNumber1 = (Random().nextInt(6)) + 1;
+        diceNumber2 = (Random().nextInt(6)) + 1;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
