@@ -1,3 +1,5 @@
+//Alert Package. This provide an alert dialog and is very appealing.
+
 import 'package:flutter/material.dart';
 import 'quiz_brain.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
