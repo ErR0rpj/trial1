@@ -2,6 +2,7 @@
 //TextTheme()
 //decoration: BoxDecoration(borderRadius:)
 //Custom Widgets in input_page.dart file
+//Gesture Detector()
 
 import 'package:flutter/material.dart';
 import 'input_page.dart';
