@@ -3,6 +3,8 @@
 //decoration: BoxDecoration(borderRadius:)
 //Custom Widgets in input_page.dart file
 //Gesture Detector()
+//Enums
+//Function as argument
 
 import 'package:flutter/material.dart';
 import 'input_page.dart';
