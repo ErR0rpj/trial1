@@ -1,19 +1,18 @@
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'BMI.dart';
 import 'ResuableCardContainer.dart';
 import 'CardContent.dart';
+import 'result_page.dart';
 
 Gender selectedGender;
 int height = 150;
 int weight = 62;
 int age = 25;
-const double bottombarHeight = 80.0;
 const int cardFlex = 6;
 const int bottomBarFlex = 2;
-const Color cardColor_clicked = Color(0xFF1D1E33);
-const Color cardColor_unclicked = Color(0xFF111328);
-const Color bottomBarColor = Color(0xFFEB1555);
+
 enum Gender {
   male,
   female,
@@ -29,7 +28,9 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
+        title: Center(
+          child: Text('BMI CALCULATOR'),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -212,10 +213,36 @@ class _InputPageState extends State<InputPage> {
           //Bottom bar. This container may have bugs depeding upon the devices.
           Expanded(
             flex: bottomBarFlex,
-            child: Container(
-              color: bottomBarColor,
-              margin: EdgeInsets.only(top: 5),
-              height: bottombarHeight,
+            child: GestureDetector(
+              onTap: () {
+                BMI bmi = BMI(height: height, weight: weight);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultPage(
+                      bmi: bmi.calculateBMI(),
+                      result: bmi.getResult(),
+                      message: bmi.getMessage(),
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.only(bottom: 5),
+                width: double.infinity,
+                child: Center(
+                  child: Text(
+                    'CALCULATE',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                color: bottomBarColor,
+                margin: EdgeInsets.only(top: 5),
+                height: bottombarHeight,
+              ),
             ),
           ),
         ],
