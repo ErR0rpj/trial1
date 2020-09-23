@@ -7,6 +7,7 @@ import 'CardContent.dart';
 Gender selectedGender;
 int height = 150;
 int weight = 62;
+int age = 25;
 const double bottombarHeight = 80.0;
 const int cardFlex = 6;
 const int bottomBarFlex = 2;
@@ -141,7 +142,7 @@ class _InputPageState extends State<InputPage> {
                             RoundButton(
                               onPressed: () {
                                 setState(() {
-                                  weight--;
+                                  if (weight > 10) weight--;
                                 });
                               },
                               icon: FontAwesomeIcons.minus,
@@ -152,7 +153,7 @@ class _InputPageState extends State<InputPage> {
                             RoundButton(
                               onPressed: () {
                                 setState(() {
-                                  weight++;
+                                  if (weight < 180) weight++;
                                 });
                               },
                               icon: FontAwesomeIcons.plus,
@@ -164,7 +165,46 @@ class _InputPageState extends State<InputPage> {
                   ),
                 ),
                 Expanded(
-                  child: ReusableCardContainer(bgcolor: cardColor_clicked),
+                  child: ReusableCardContainer(
+                    bgcolor: cardColor_clicked,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: commonTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: commonIconStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (age > 1) age--;
+                                });
+                              },
+                              icon: FontAwesomeIcons.minus,
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            RoundButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (age < 120) age++;
+                                });
+                              },
+                              icon: FontAwesomeIcons.plus,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -186,7 +226,7 @@ class _InputPageState extends State<InputPage> {
 
 class RoundButton extends StatelessWidget {
   final IconData icon;
-  Function onPressed;
+  final Function onPressed;
 
   RoundButton({this.icon, @required this.onPressed});
 
