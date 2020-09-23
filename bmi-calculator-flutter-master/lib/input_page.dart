@@ -1,14 +1,18 @@
+import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'ResuableCardContainer.dart';
 import 'CardContent.dart';
 
+Gender selectedGender;
+int height = 150;
+int weight = 62;
 const double bottombarHeight = 80.0;
 const int cardFlex = 6;
 const int bottomBarFlex = 2;
 const Color cardColor_clicked = Color(0xFF1D1E33);
 const Color cardColor_unclicked = Color(0xFF111328);
-const int bottomBarColor = 0xFFEB1555;
+const Color bottomBarColor = Color(0xFFEB1555);
 enum Gender {
   male,
   female,
@@ -20,8 +24,6 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Gender selectedGender;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +33,7 @@ class _InputPageState extends State<InputPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          //Genders Cards
           Expanded(
             flex: cardFlex,
             child: Row(
@@ -70,6 +73,7 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
+          //Height Card
           Expanded(
             flex: cardFlex,
             child: ReusableCardContainer(
@@ -79,22 +83,81 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Text(
                     'HEIGHT',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Color(0xFF8D8E98),
-                    ),
+                    style: commonTextStyle,
                   ),
-                  Slider(value: null, onChanged: null)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: commonIconStyle,
+                      ),
+                      Text(
+                        'cm',
+                        style: commonTextStyle,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    min: min_height,
+                    max: max_height,
+                    activeColor: bottomBarColor,
+                    inactiveColor: Color(0xFF8D8E98),
+                    onChanged: (double newHeight) {
+                      setState(() {
+                        height = newHeight.round();
+                      });
+                    },
+                  ),
                 ],
               ),
             ),
           ),
+          //Weight and age cards
           Expanded(
             flex: cardFlex,
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCardContainer(bgcolor: cardColor_clicked),
+                  child: ReusableCardContainer(
+                    bgcolor: cardColor_clicked,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: commonTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              weight.toString(),
+                              style: commonIconStyle,
+                            ),
+                            Text(
+                              'Kg',
+                              style: commonTextStyle,
+                            ),
+                          ],
+                        ),
+                        FloatingActionButton(
+                          backgroundColor: Color(0xFF4C4F5E),
+                          onPressed: () {},
+                          child: Icon(
+                            Icons.add,
+                            size: 15,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
                   child: ReusableCardContainer(bgcolor: cardColor_clicked),
@@ -102,11 +165,11 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          //This container may have bugs depeding upon the devices.
+          //Bottom bar. This container may have bugs depeding upon the devices.
           Expanded(
             flex: bottomBarFlex,
             child: Container(
-              color: Color(bottomBarColor),
+              color: bottomBarColor,
               margin: EdgeInsets.only(top: 5),
               height: bottombarHeight,
             ),

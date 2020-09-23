@@ -22,7 +22,7 @@ class CardContent extends StatelessWidget {
         ),
         Text(
           this.cardText,
-          style: commonTextStyle(),
+          style: commonTextStyle,
         ),
       ],
     );
