@@ -5,6 +5,9 @@
 //Gesture Detector()
 //Enums
 //Function as argument
+//Slider
+//WidgetTheme (not implemented in this app though but can be found in videos)
+//Custom Widget (here a button is made)
 
 import 'package:flutter/material.dart';
 import 'input_page.dart';

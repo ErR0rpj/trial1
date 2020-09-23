@@ -131,29 +131,33 @@ class _InputPageState extends State<InputPage> {
                           'WEIGHT',
                           style: commonTextStyle,
                         ),
+                        Text(
+                          weight.toString(),
+                          style: commonIconStyle,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                          textBaseline: TextBaseline.alphabetic,
                           children: [
-                            Text(
-                              weight.toString(),
-                              style: commonIconStyle,
+                            RoundButton(
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                              icon: FontAwesomeIcons.minus,
                             ),
-                            Text(
-                              'Kg',
-                              style: commonTextStyle,
+                            SizedBox(
+                              width: 15,
+                            ),
+                            RoundButton(
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                              icon: FontAwesomeIcons.plus,
                             ),
                           ],
-                        ),
-                        FloatingActionButton(
-                          backgroundColor: Color(0xFF4C4F5E),
-                          onPressed: () {},
-                          child: Icon(
-                            Icons.add,
-                            size: 15,
-                            color: Colors.white,
-                          ),
                         ),
                       ],
                     ),
@@ -176,6 +180,27 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class RoundButton extends StatelessWidget {
+  final IconData icon;
+  Function onPressed;
+
+  RoundButton({this.icon, @required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: onPressed,
+      child: Icon(icon),
+      constraints: BoxConstraints.tightFor(
+        width: 56,
+        height: 56,
+      ),
+      shape: CircleBorder(),
+      fillColor: Color(0xFF4C4F5E),
     );
   }
 }
