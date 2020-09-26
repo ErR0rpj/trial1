@@ -1,3 +1,6 @@
+//Geolocator
+//Asynchronous, futures, await
+
 import 'package:flutter/material.dart';
 import 'package:clima/screens/loading_screen.dart';
 
