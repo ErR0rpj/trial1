@@ -1,8 +1,8 @@
-import 'dart:convert';
+import 'package:clima/screens/location_screen.dart';
 import 'package:clima/services/location.dart';
 import 'package:clima/services/networking.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const apiKey = 'e659f1987ab784b45dec6538f523fc7a';
 
@@ -27,10 +27,22 @@ class _LoadingScreenState extends State<LoadingScreen> {
     latitude = location.latitude;
     longitude = location.longitude;
     var decodedData = await NetworkHelper().getData(latitude, longitude);
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return LocationScreen(decodedData: decodedData);
+    }));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: SpinKitDoubleBounce(
+          color: Colors.white,
+          size: 50,
+          duration: Duration(seconds: 2),
+        ),
+      ),
+    );
   }
 }

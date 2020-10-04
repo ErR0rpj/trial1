@@ -8,7 +8,7 @@ class NetworkHelper {
 
   Future getData(double latitude, double longitude) async {
     http.Response response = await http.get(
-        'http://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
+        'http://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey&units=metric');
 
     if (response.statusCode == 200) {
       String rawData = response.body;
