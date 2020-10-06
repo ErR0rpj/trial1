@@ -4,19 +4,23 @@ import 'dart:convert';
 class NetworkHelper {
   NetworkHelper();
 
-  static const apiKey = 'e659f1987ab784b45dec6538f523fc7a';
+  static const String apiKey = 'e659f1987ab784b45dec6538f523fc7a';
+  static const String openWeatherURL =
+      'http://api.openweathermap.org/data/2.5/weather';
 
-  Future getData(double latitude, double longitude) async {
+  Future<dynamic> getData(double latitude, double longitude) async {
     http.Response response = await http.get(
-        'http://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey&units=metric');
+        '$openWeatherURL?lat=$latitude&lon=$longitude&appid=$apiKey&units=metric');
+    var decodedData;
 
     if (response.statusCode == 200) {
       String rawData = response.body;
 
-      var decodedData = jsonDecode(rawData);
+      decodedData = jsonDecode(rawData);
       return decodedData;
     } else {
       print('Something went wrong: ' + response.statusCode.toString());
+      return decodedData;
     }
   }
 }
