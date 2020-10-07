@@ -1,4 +1,6 @@
 //Routes, initial routes
+//Hero animation
+//Animation with ticker and controller
 
 import 'package:flutter/material.dart';
 import 'package:flash_chat/screens/welcome_screen.dart';
@@ -20,12 +22,12 @@ class FlashChat extends StatelessWidget {
           bodyText2: TextStyle(color: Colors.black54),
         ),
       ),
-      initialRoute: WelcomeScreen().id,
+      initialRoute: WelcomeScreen.id,
       routes: {
-        WelcomeScreen().id: (context) => WelcomeScreen(),
-        RegistrationScreen().id: (context) => RegistrationScreen(),
-        LoginScreen().id: (context) => LoginScreen(),
-        ChatScreen().id: (context) => ChatScreen(),
+        WelcomeScreen.id: (context) => WelcomeScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
+        LoginScreen.id: (context) => LoginScreen(),
+        ChatScreen.id: (context) => ChatScreen(),
       },
     );
   }
