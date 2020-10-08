@@ -29,6 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 48.0,
             ),
             TextField(
+              //Changes the keyboard style for the user.
+              keyboardType: TextInputType.emailAddress,
+              textAlign: TextAlign.center,
               onChanged: (value) {
                 //Do something with the user input.
               },
@@ -55,6 +58,9 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 8.0,
             ),
             TextField(
+              //This hides the text with stars.
+              obscureText: true,
+              textAlign: TextAlign.center,
               onChanged: (value) {
                 //Do something with the user input.
               },

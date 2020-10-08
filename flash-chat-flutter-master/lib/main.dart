@@ -1,6 +1,8 @@
 //Routes, initial routes
 //Hero animation
+//TextField
 //Animation with ticker and controller
+//Firebase
 
 import 'package:flutter/material.dart';
 import 'package:flash_chat/screens/welcome_screen.dart';
