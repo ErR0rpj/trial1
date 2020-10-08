@@ -25,7 +25,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     //Animation controller changes its value from 0.0 to 1 (default, can be changed)
     //within the duration (here 1 sec) defined above. Range can be change with
     //Upperbound and lowerBound properties while initializing the controller.
-
     controller = AnimationController(
       duration: Duration(seconds: 1),
       vsync: this,
