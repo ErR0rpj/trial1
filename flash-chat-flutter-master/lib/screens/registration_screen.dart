@@ -1,4 +1,5 @@
 import 'package:flash_chat/screens/chat_screen.dart';
+import 'package:flash_chat/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -96,39 +97,26 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               SizedBox(
                 height: 24.0,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                child: Material(
-                  color: Colors.blueAccent,
-                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                  elevation: 5.0,
-                  child: MaterialButton(
-                    onPressed: () async {
-                      setState(() {
-                        showProgress = true;
-                      });
-                      try {
-                        final newUser =
-                            await _auth.createUserWithEmailAndPassword(
-                                email: email, password: password);
-                        if (newUser != null) {
-                          Navigator.pushNamed(context, ChatScreen.id);
-                        }
-                      } catch (e) {
-                        print(e);
-                      }
-                      setState(() {
-                        showProgress = false;
-                      });
-                    },
-                    minWidth: 200.0,
-                    height: 42.0,
-                    child: Text(
-                      'Register',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
+              RoundedButton(
+                color: Colors.blueAccent,
+                label: 'Regsiter',
+                onPressed: () async {
+                  setState(() {
+                    showProgress = true;
+                  });
+                  try {
+                    final newUser = await _auth.createUserWithEmailAndPassword(
+                        email: email, password: password);
+                    if (newUser != null) {
+                      Navigator.pushNamed(context, ChatScreen.id);
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
+                  setState(() {
+                    showProgress = false;
+                  });
+                },
               ),
             ],
           ),
