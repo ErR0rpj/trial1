@@ -17,10 +17,11 @@ class TasksScreen extends StatelessWidget {
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
         onPressed: () {
-          showModalBottomSheet(context: context, builder: buildBottomSheet);
+          showModalBottomSheet(context: context, isScrollControlled: true, builder: buildBottomSheet);
         },
       ),
       body: Column(
+
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
