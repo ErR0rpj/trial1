@@ -1,12 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todey/models/Task.dart';
 import 'package:todey/screens/add_task_screen.dart';
 import 'package:todey/widgets/tasks_list.dart';
 
-class TasksScreen extends StatelessWidget {
-  //This can be shorten(even removed) as done is previous projects.
+class TasksScreen extends StatefulWidget {
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+
+
   Widget buildBottomSheet(BuildContext context) {
-    return AddTaskScreen();
+    return AddTaskScreen(onAddPressed: (taskName){
+      setState(() {
+        tasks.add(Task(name: taskName));
+      });
+      Navigator.pop(context);
+    });
   }
 
   @override
@@ -17,11 +29,13 @@ class TasksScreen extends StatelessWidget {
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
         onPressed: () {
-          showModalBottomSheet(context: context, isScrollControlled: true, builder: buildBottomSheet);
+          showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: buildBottomSheet);
         },
       ),
       body: Column(
-
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -50,7 +64,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '12 Tasks',
+                  tasks.length.toString(),
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
